@@ -45,7 +45,7 @@ function resizeImage(image, width, height) {
     };
 }
 
-async function searchImage(queryItem) {
+function searchImage(queryItem) {
     const queryURL = `${searchURL}/search?q=${queryItem}&mkt=en-us`;
     const params = {
         headers: {
@@ -53,8 +53,12 @@ async function searchImage(queryItem) {
         },
         method: "GET"
     }
-    const result = await fetch(queryURL, params).then(response => response.json());
-    console.log(result);
+    const result = fetch(queryURL, params).then(async response => {
+        const res = await response.json();
+        if (!res["value"] || res["value"].length === 0) { return null; }
+        return res["value"][0]["contentUrl"];
+    });
+    return result;
 }
 
 async function processImage(image, isFile) {
@@ -68,6 +72,7 @@ async function processImage(image, isFile) {
         method: "POST"
     };
     const items = [];
+    const urlPromisesList = [];
     const result = await fetch(url, params).then(response => response.json());
     result.regions.forEach(region => {
         region.lines.forEach(line => {
@@ -80,6 +85,18 @@ async function processImage(image, isFile) {
         });
     });
     console.log(items);
+    items.forEach((item) => urlPromisesList.push(searchImage(item)));
+
+    const listOfFoodURL = await Promise.all(urlPromisesList);
+
+    const resultURL = [];
+    for (index = 0; index < listOfFoodURL.length; index++) {
+        const foodDict = {};
+        foodDict['name'] = items[index];
+        foodDict['contentURL'] = listOfFoodURL[index];
+        resultURL.push(foodDict);
+    }
+    console.log(resultURL);
     return items;
 }
 
@@ -135,7 +152,6 @@ resetButton.addEventListener("click", function() {
 
 confirmButton.addEventListener("click", function() {
     canvas.toBlob(blob => processImage(blob, false));
-    searchImage("Canadian Pizza");
     clearCanvas();
     state = "idle";
 });
