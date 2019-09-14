@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>See Food</title>
+    <link rel="stylesheet" href="styles.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css"
+    />
+    <link
+      href="https://fonts.googleapis.com/icon?family=Material+Icons"
+      rel="stylesheet"
+    />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+  </head>
+
+  <body>
+    <!-- Navbar -->
+    <header>
+      <div class="navbar-fixed">
+        <nav>
+          <div class="nav-wrapper grey darken-4">
+            <a class="brand-logo"
+              ><img class="logo-image" src="./title-logo.png"
+            /></a>
+          </div>
+        </nav>
+      </div>
+    </header>
+    <!-- Main Body -->
+    <main>
+      <div class="container">
+        <div class="row">
+          <h4 class="center-align" id="title-text">Take or add a photo!</h4>
+        </div>
+        <div class="row">
+          <div id="canvas-container">
+            <video id="video" width="320" height="240" autoplay></video>
+            <canvas id="canvas" width="320" height="240"></canvas>
+          </div>
+        </div>
+        <div class="row">
+          <p class="center-align">
+            <a
+              class="btn-floating btn-large waves-effect waves-light blue take-photo"
+              id="snap"
+              ><i class="material-icons">add_a_photo</i></a
+            >
+            <a
+              class="btn-floating btn-large waves-effect waves-light green take-photo"
+              id="confirm"
+              ><i class="material-icons">check</i></a
+            >
+            <a
+              class="btn-floating btn-large waves-effect waves-light red take-photo"
+              id="reset"
+              ><i class="material-icons">undo</i></a
+            >
+            <label for="file-upload" class="custom-file-upload">
+              <a
+                class="btn-floating btn-large waves-effect waves-light green take-photo"
+                id="upload"
+                ><i class="material-icons">cloud_upload</i></a
+              >
+            </label>
+            <input
+              id="file-upload"
+              type="file"
+              onchange="handleFiles(this.files)"
+            />
+          </p>
+        </div>
+      </div>
+    </main>
+    <!-- Footer -->
+    <footer class="page-footer black">
+      <div class="footer-copyright">
+        <div class="container">
+          Created by Kevin Leung, Jerry Iu, Jennifer Liu, and Heddy Gong for
+          Hack The North 2019
+        </div>
+      </div>
+    </footer>
+    <script src="scripts.js"></script>
+  </body>
+</html>

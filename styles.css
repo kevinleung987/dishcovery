@@ -1,0 +1,63 @@
+.brand-logo {
+    top: 7px;
+}
+
+.logo-image {
+    width: 125px;
+    height: inherit;
+}
+
+body {
+    display: flex;
+    min-height: 100vh;
+    flex-direction: column;
+}
+
+main {
+    flex: 1 0 auto;
+}
+
+footer {
+    padding-top: 0px !important;
+}
+
+.take-photo {
+    size: 480px !important;
+}
+
+video {
+    border: 2px solid red;
+}
+
+canvas {
+  border: 1px dashed black;
+}
+
+.btn-large {
+    height: 112px !important;
+    width: 112px !important;
+    margin-left: 1rem;
+    margin-right: 1rem;
+}
+
+.btn-floating.btn-large i {
+    line-height: 112px !important;
+}
+
+.btn-large i {
+    font-size: 3.2rem !important;
+}
+
+#canvas-container {
+    width: 100%;
+    text-align: center;
+}
+
+canvas,
+video {
+    display: inline;
+}
+
+input[type="file"] {
+  display: none;
+}
