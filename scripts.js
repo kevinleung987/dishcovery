@@ -15,7 +15,12 @@ const uploadButton = document.getElementById("upload");
 
 const key = "a9ba303f20ef47aebdb7a18bd3d9a747";
 const endpoint = "https://htn-2019.cognitiveservices.azure.com";
-const url = `${endpoint}/vision/v2.0/ocr`;
+const url = `${endpoint}/vision/v2.0/ocr?language=en&detectOrientation=false`;
+
+const searchKey = "0cbaf33d08b84d8497428aca67d6b512";
+const searchEndpoint =
+  "https://hackthenorth19-bingsearch.cognitiveservices.azure.com";
+const searchURL = `${searchEndpoint}/bing/v7.0/images`;
 
 clearCanvas();
 
@@ -41,14 +46,28 @@ function resizeImage(image, width, height) {
   };
 }
 
-async function processImage(image, isFile) {
-  console.log(image);
+async function searchImage(queryItem) {
+  const queryURL = `${searchURL}/search?q=${queryItem}&mkt=en-us`;
   const params = {
     headers: {
-      "content-type": isFile ? "application/octet-stream" : "multipart/form-data",
+      "Ocp-Apim-Subscription-Key": `${searchKey}`
+    },
+    method: "GET"
+  };
+  const result = await fetch(queryURL, params).then(response =>
+    response.json()
+  );
+  console.log(result);
+}
+
+async function processImage(image, isFile) {
+  const file = new File([image], "image.png");
+  const params = {
+    headers: {
+      "content-type": "application/octet-stream",
       "Ocp-Apim-Subscription-Key": `${key}`
     },
-    body: image,
+    body: isFile ? image : file,
     method: "POST"
   };
   const items = [];
@@ -60,7 +79,9 @@ async function processImage(image, isFile) {
         word = word.text.replace(/[^A-Za-z]/g, "");
         phrase = word.length > 0 ? phrase.concat(`${word} `) : phrase;
       });
-      phrase.length > 0 && (!phrase.toLowerCase().includes('menu')) ? items.push(phrase) : null;
+      phrase.length > 0 && !phrase.toLowerCase().includes("menu")
+        ? items.push(phrase)
+        : null;
     });
   });
   console.log(items);
@@ -118,7 +139,8 @@ resetButton.addEventListener("click", function() {
 });
 
 confirmButton.addEventListener("click", function() {
+  canvas.toBlob(blob => processImage(blob, false));
+  searchImage("Canadian Pizza");
   clearCanvas();
   state = "idle";
-  canvas.toBlob(blob => processImage(blob, false));
 });
