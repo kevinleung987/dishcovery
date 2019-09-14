@@ -15,7 +15,7 @@ const uploadButton = document.getElementById("upload");
 
 const key = "a9ba303f20ef47aebdb7a18bd3d9a747";
 const endpoint = "https://htn-2019.cognitiveservices.azure.com";
-const url = `${endpoint}/vision/v2.0/ocr`;
+const url = `${endpoint}/vision/v2.0/ocr?language=en`;
 
 clearCanvas();
 
@@ -43,16 +43,19 @@ function resizeImage(image, width, height) {
 
 async function processImage(image, isFile) {
   console.log(image);
+  const file = new File([image], 'image.png');
+  const contentType = isFile ? "application/octet-stream" : "application/octet-stream";
   const params = {
     headers: {
-      "content-type": isFile ? "application/octet-stream" : "multipart/form-data",
+      "content-type": contentType,
       "Ocp-Apim-Subscription-Key": `${key}`
     },
-    body: image,
+    body: isFile ? image : file,
     method: "POST"
   };
   const items = [];
   const result = await fetch(url, params).then(response => response.json());
+  console.log(result);
   result.regions.forEach(region => {
     region.lines.forEach(line => {
       let phrase = "";
@@ -118,7 +121,7 @@ resetButton.addEventListener("click", function() {
 });
 
 confirmButton.addEventListener("click", function() {
+  canvas.toBlob(blob => processImage(blob, false));
   clearCanvas();
   state = "idle";
-  canvas.toBlob(blob => processImage(blob, false));
 });
