@@ -122,3 +122,30 @@ a.middle-indicator-text {
 
     /*opacity: 0.5;*/
 }
+
+header {
+    background: url(img/homepage.jpg);
+    background-size: cover;
+    background-position: center;
+    min-height: 900px;
+
+}
+
+@media screen and (max-width: 670px) {
+    header {
+        min-height: 500px;
+    }
+}
+
+.section {
+    padding-top: 4vw;
+    padding-bottom: 4vw;
+}
+
+.tabs .indicator {
+    background-color: #1a237e;
+}
+
+.tabs .tab a:focus, .tabs .tab a:focus.active {
+    background: transparent;
+}
