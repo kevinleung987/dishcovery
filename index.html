@@ -1,88 +1,152 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>See Food</title>
-    <link rel="stylesheet" href="styles.css" />
-    <link
-      rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css"
-    />
-    <link
-      href="https://fonts.googleapis.com/icon?family=Material+Icons"
-      rel="stylesheet"
-    />
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
-  </head>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <!-- font awesome -->
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.13/css/all.css"
+        integrity="sha384-DNOHZ68U8hZfKXOrtjWvjxusGo9WQnrNx2sqG0tfsghAvtVlRW3tvkXWZh58N9jp" crossorigin="anonymous">
+  <!--Import Google Icon Font-->
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <!-- Compiled and minified CSS -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-beta/css/materialize.min.css">
 
-  <body>
-    <!-- Navbar -->
-    <header>
-      <div class="navbar-fixed">
-        <nav>
-          <div class="nav-wrapper grey darken-4">
-            <a class="brand-logo"
-              ><img class="logo-image" src="./title-logo.png"
-            /></a>
-          </div>
-        </nav>
+  <title>Menu</title>
+  <link rel="stylesheet" href="styles.css"/>
+
+</head>
+<body>
+
+
+<a href="#start">
+  <header>
+  </header>
+</a>
+
+
+<!--------------------TODO: Do we need a navbar??----------------->
+<!--navbar-->
+<!--<nav class="nav-wrapper transparent">-->
+<!--<div class="container">-->
+<!--<a href="#" class="brand-logo">See Food-->
+<!--</a>-->
+<!--<a href="#" class="sidenav-trigger" data-target="mobile-menu">-->
+<!--<i class="material-icons">menu</i>-->
+<!--</a>-->
+<!--<ul class="right hide-on-med-and-down">-->
+<!--<li><a href="#photos"></a></li>-->
+<!--<li><a href="#services"></a></li>-->
+<!--<li><a href="#contact"></a></li>-->
+<!--<li><a href="#" class="tooltipped btn-floating btn-small indigo darken-4" data-position="bottom" data-tooltip="Instagram">-->
+<!--<i class="fab fa-instagram"></i>-->
+<!--</a></li>-->
+<!--<li><a href="#" class="tooltipped btn-floating btn-small indigo darken-4" data-position="bottom" data-tooltip="Facebook">-->
+<!--<i class="fab fa-facebook"></i>-->
+<!--</a></li>-->
+<!--<li><a href="#" class="tooltipped btn-floating btn-small indigo darken-4" data-position="bottom" data-tooltip="Twitter">-->
+<!--<i class="fab fa-twitter"></i>-->
+<!--</a></li>-->
+<!--</ul>-->
+<!--</div>-->
+<!--</nav>-->
+
+
+<!-- Main Body -->
+<main>
+  <div class="container section scrollspy" id="start">
+    <div class="row">
+      <h4 class="center-align" id="title-text">Take or add a photo!</h4>
+    </div>
+    <div class="row">
+      <div id="canvas-container">
+        <video id="video" width="320" height="240" autoplay></video>
+        <canvas id="canvas" width="320" height="240"></canvas>
       </div>
-    </header>
-    <!-- Main Body -->
-    <main>
-      <div class="container">
-        <div class="row">
-          <h4 class="center-align" id="title-text">Take or add a photo!</h4>
-        </div>
-        <div class="row">
-          <div id="canvas-container">
-            <video id="video" width="320" height="240" autoplay></video>
-            <canvas id="canvas" width="320" height="240"></canvas>
-          </div>
-        </div>
-        <div class="row">
-          <p class="center-align">
-            <a
-              class="btn-floating btn-large waves-effect waves-light blue take-photo"
-              id="snap"
-              ><i class="material-icons">add_a_photo</i></a
-            >
-            <a
-              class="btn-floating btn-large waves-effect waves-light green take-photo"
-              id="confirm"
-              ><i class="material-icons">check</i></a
-            >
-            <a
-              class="btn-floating btn-large waves-effect waves-light red take-photo"
-              id="reset"
-              ><i class="material-icons">undo</i></a
-            >
-            <label for="file-upload" class="custom-file-upload">
-              <a
+    </div>
+    <div class="row">
+      <p class="center-align">
+        <a
+                class="btn-floating btn-large waves-effect waves-light blue take-photo"
+                id="snap"
+        ><i class="material-icons">add_a_photo</i></a
+        >
+        <a
                 class="btn-floating btn-large waves-effect waves-light green take-photo"
-                id="upload"
-                ><i class="material-icons">cloud_upload</i></a
-              >
-            </label>
-            <input
-              id="file-upload"
-              type="file"
-              onchange="handleFiles(this.files)"
-            />
-          </p>
-        </div>
+                id="confirm"
+        ><i class="material-icons">check</i></a
+        >
+        <a
+                class="btn-floating btn-large waves-effect waves-light red take-photo"
+                id="reset"
+        ><i class="material-icons">undo</i></a
+        >
+        <label for="file-upload" class="custom-file-upload">
+          <a
+                  class="btn-floating btn-large waves-effect waves-light green take-photo"
+                  id="upload"
+          ><i class="material-icons">cloud_upload</i></a
+          >
+        </label>
+        <input
+                id="file-upload"
+                type="file"
+                onchange="handleFiles(this.files)"
+        />
+      </p>
+    </div>
+  </div>
+</main>
+
+
+<!--Menu Display-->
+<div class="container">
+  <div class="carousel carousel-slider center " data-indicators="true">
+    <div class="carousel-fixed-item center middle-indicator">
+      <div class="left">
+        <a href="Previo"
+           class="movePrevCarousel middle-indicator-text waves-effect waves-light content-indicator"><i
+                class="material-icons left  middle-indicator-text">chevron_left</i></a>
       </div>
-    </main>
-    <!-- Footer -->
-    <footer class="page-footer black">
-      <div class="footer-copyright">
-        <div class="container">
-          Created by Kevin Leung, Jerry Iu, Jennifer Liu, and Heddy Gong for
-          Hack The North 2019
-        </div>
+
+      <div class="right">
+        <a href="Siguiente"
+           class=" moveNextCarousel middle-indicator-text waves-effect waves-light content-indicator"><i
+                class="material-icons right middle-indicator-text">chevron_right</i></a>
       </div>
-    </footer>
-    <script src="scripts.js"></script>
-  </body>
+    </div>
+    <div class="carousel-item red " href="#one!">
+
+      <div class="food-cap">
+        <h2>One</h2>
+      </div>
+
+
+    </div>
+    <div class="carousel-item amber" href="#two!">
+      <div class="food-cap">
+        <h2>Two</h2>
+      </div>
+    </div>
+    <div class="carousel-item green" href="#three!">
+      <div class="food-cap">
+        <h2>Three</h2>
+      </div>
+    </div>
+    <div class="carousel-item blue" href="#four!">
+      <div class="food-cap">
+        <h2>Four</h2>
+      </div>
+    </div>
+  </div>
+</div>
+<br><br>
+
+<!-- Compiled and minified JavaScript -->
+<script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-beta/js/materialize.min.js"></script>
+<script src="setup.js"></script>
+<script src="scripts.js"></script>
+
+</body>
 </html>
