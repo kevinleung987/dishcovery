@@ -18,7 +18,8 @@ const endpoint = "https://htn-2019.cognitiveservices.azure.com";
 const url = `${endpoint}/vision/v2.0/ocr?language=en&detectOrientation=false`;
 
 const searchKey = "0cbaf33d08b84d8497428aca67d6b512";
-const searchEndpoint = "https://hackthenorth19-bingsearch.cognitiveservices.azure.com"
+const searchEndpoint =
+    "https://hackthenorth19-bingsearch.cognitiveservices.azure.com";
 const searchURL = `${searchEndpoint}/bing/v7.0/images`;
 
 clearCanvas();
@@ -44,6 +45,9 @@ function resizeImage(image, width, height) {
         context.drawImage(image, 0, 0, width, height);
     };
 }
+
+<<
+<< << < HEAD
 
 function searchImage(queryItem) {
     const queryURL = `${searchURL}/search?q=${queryItem}&mkt=en-us`;
@@ -150,8 +154,16 @@ resetButton.addEventListener("click", function() {
     state = "idle";
 });
 
-confirmButton.addEventListener("click", function() {
+confirmButton.addEventListener("click", function() { <<
+    << << < HEAD
     canvas.toBlob(blob => processImage(blob, false));
     clearCanvas();
     state = "idle";
-});
+}); ===
+=== =
+canvas.toBlob(blob => processImage(blob, false));
+searchImage("Canadian Pizza");
+clearCanvas();
+state = "idle";
+}); >>>
+>>> > 2 b5ee57b06ec3d7be951a127b5b20b8080af491c
