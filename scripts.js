@@ -46,9 +46,6 @@ function resizeImage(image, width, height) {
     };
 }
 
-<<
-<< << < HEAD
-
 function searchImage(queryItem) {
     const queryURL = `${searchURL}/search?q=${queryItem}&mkt=en-us`;
     const params = {
@@ -155,15 +152,18 @@ resetButton.addEventListener("click", function() {
 });
 
 confirmButton.addEventListener("click", function() { <<
-    << << < HEAD
+    <<
+    << < HEAD
     canvas.toBlob(blob => processImage(blob, false));
     clearCanvas();
     state = "idle";
 }); ===
-=== =
+===
+=
 canvas.toBlob(blob => processImage(blob, false));
 searchImage("Canadian Pizza");
 clearCanvas();
 state = "idle";
 }); >>>
->>> > 2 b5ee57b06ec3d7be951a127b5b20b8080af491c
+>>>
+> 2 b5ee57b06ec3d7be951a127b5b20b8080af491c
