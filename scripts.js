@@ -151,19 +151,8 @@ resetButton.addEventListener("click", function() {
     state = "idle";
 });
 
-confirmButton.addEventListener("click", function() { <<
-    <<
-    << < HEAD
+confirmButton.addEventListener("click", function() {
     canvas.toBlob(blob => processImage(blob, false));
     clearCanvas();
     state = "idle";
-}); ===
-===
-=
-canvas.toBlob(blob => processImage(blob, false));
-searchImage("Canadian Pizza");
-clearCanvas();
-state = "idle";
-}); >>>
->>>
-> 2 b5ee57b06ec3d7be951a127b5b20b8080af491c
+});
