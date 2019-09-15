@@ -174,3 +174,11 @@ img {
     width: auto;
     opacity: 0.73;
 }
+
+.hide{
+    display: None;
+}
+
+.show{
+    display:block;
+}

@@ -128,7 +128,6 @@ async function processImage(image, isFile) {
         foodResult.push(foodDict);
     }
     displayPicture(foodResult);
-    setUpCarousel();
     console.log(foodResult);
     return items;
 }
@@ -142,14 +141,11 @@ function displayPicture(res) {
 
     res.forEach((item) => {
         if (item.contentURL) {
-
-
             const div = document.createElement("div");
             div.style.backgroundImage = "url(" + item.contentURL + ")";
             // div.id = item.name;
             div.className = "carousel-item display-item";
             if (!active) {
-                // carousel.removeChild(carousel.childNodes[2]);
                 div.className += " active";
                 active = true;
             }
@@ -247,4 +243,8 @@ function setUpCarousel() {
         e.stopPropagation();
         $('.carousel').carousel('prev');
     });
+}
+
+function showCarousel() {
+    setUpCarousel();
 }
