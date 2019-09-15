@@ -132,6 +132,9 @@ a.middle-indicator-text {
 
 .launch {
   background-color: #fdcf6c;
+}
+
+.page {
   height: 100vh;
   width: 100vw;
 }
@@ -173,10 +176,15 @@ img {
 }
 
 .white {
-  margin-top: 250px;
+  margin-top: 70vh;
   background-color: white;
   width: auto;
   opacity: 0.73;
+  padding: 15px;
+}
+
+.sound {
+    margin-top: 60vh;
 }
 
 .hide {
