@@ -12,5 +12,3 @@ $(document).ready(function () {
     $('.scrollspy').scrollSpy();
 
 });
-
-// setUpCarousel();

@@ -134,7 +134,9 @@ async function processImage(image, isFile) {
   return items;
 }
 
-document.addEventListener("DOMContentLoaded", async function() {});
+document.addEventListener("DOMContentLoaded", async function() {
+  setUpCarousel();
+});
 
 let active = false;
 
@@ -165,6 +167,7 @@ function displayPicture(res) {
       carousel.appendChild(div);
     }
   });
+  setUpCarousel();
 }
 
 // State Machine for rendering logic
@@ -241,8 +244,4 @@ function setUpCarousel() {
     e.stopPropagation();
     $(".carousel").carousel("prev");
   });
-}
-
-function showCarousel() {
-  setUpCarousel();
 }
