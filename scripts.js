@@ -80,10 +80,16 @@ function searchWeb(queryItem) {
     if (!res["webPages"]["value"] || res["webPages"]["value"].length === 0) {
       return null;
     }
-    const description = res["webPages"]["value"][0]["snippet"];
+    const description = decodeHtml(res["webPages"]["value"][0]["snippet"]);
     return description;
   });
   return result;
+}
+
+function decodeHtml(html) {
+    var txt = document.createElement("textarea");
+    txt.innerHTML = html;
+    return txt.value;
 }
 
 async function processImage(image, isFile) {
@@ -219,7 +225,6 @@ resetButton.addEventListener("click", function() {
 });
 
 confirmButton.addEventListener("click", function() {
-  canvas.toBlob(blob => processImage(blob, false));
   clearCanvas();
   state = "idle";
 });
