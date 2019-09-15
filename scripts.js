@@ -12,6 +12,7 @@ const takePhotoButton = document.getElementById("snap");
 const confirmButton = document.getElementById("confirm");
 const resetButton = document.getElementById("reset");
 const uploadButton = document.getElementById("upload");
+const carousel = document.getElementById("carousel");
 
 const key = "a9ba303f20ef47aebdb7a18bd3d9a747";
 const endpoint = "https://htn-2019.cognitiveservices.azure.com";
@@ -53,10 +54,12 @@ function searchImage(queryItem) {
             "Ocp-Apim-Subscription-Key": `${searchKey}`
         },
         method: "GET"
-    }
+    };
     const result = fetch(queryURL, params).then(async response => {
         const res = await response.json();
-        if (!res["value"] || res["value"].length === 0) { return null; }
+        if (!res["value"] || res["value"].length === 0) {
+            return null;
+        }
         return res["value"][0]["contentUrl"];
     });
     return result;
@@ -95,13 +98,50 @@ async function processImage(image, isFile) {
         const foodDict = {};
         foodDict['name'] = items[index];
         foodDict['contentURL'] = listOfFoodURL[index];
+
         resultURL.push(foodDict);
     }
+    displayPicture(resultURL);
+    setUpCarousel();
     console.log(resultURL);
     return items;
 }
 
-document.addEventListener("DOMContentLoaded", async function() {});
+document.addEventListener("DOMContentLoaded", async function () {
+});
+
+let active = false;
+
+function displayPicture(res) {
+
+    res.forEach((item) => {
+        if (item.contentURL) {
+
+
+            const div = document.createElement("div");
+            div.style.backgroundImage = "url(" + item.contentURL + ")";
+            // div.id = item.name;
+            div.className = "carousel-item display-item";
+            if (!active) {
+                // carousel.removeChild(carousel.childNodes[2]);
+                div.className += " active";
+                active = true;
+            }
+
+            const p = document.createElement("p");
+            p.className = "black-text white";
+
+            const name = document.createElement("b");
+            name.innerText = item.name;
+            p.appendChild(name);
+
+            div.appendChild(p);
+
+            carousel.appendChild(div);
+        }
+    });
+
+}
 
 // State Machine for rendering logic
 setInterval(() => {
@@ -125,7 +165,7 @@ setInterval(() => {
 }, 50);
 
 // Trigger photo take
-takePhotoButton.addEventListener("click", function() {
+takePhotoButton.addEventListener("click", function () {
     if (state === "recording") {
         context.drawImage(video, 0, 0, canvas.width, canvas.height);
         video.srcObject = null;
@@ -134,8 +174,8 @@ takePhotoButton.addEventListener("click", function() {
     } else {
         if (navigator.mediaDevices && navigator.mediaDevices.getUserMedia) {
             navigator.mediaDevices
-                .getUserMedia({ video: true })
-                .then(function(stream) {
+                .getUserMedia({video: true})
+                .then(function (stream) {
                     video.srcObject = stream;
                     video.play();
                 });
@@ -144,15 +184,38 @@ takePhotoButton.addEventListener("click", function() {
     }
 });
 
-resetButton.addEventListener("click", function() {
+resetButton.addEventListener("click", function () {
     video.srcObject = null;
     video.pause();
     clearCanvas();
     state = "idle";
 });
 
-confirmButton.addEventListener("click", function() {
+confirmButton.addEventListener("click", function () {
     canvas.toBlob(blob => processImage(blob, false));
     clearCanvas();
     state = "idle";
 });
+
+function setUpCarousel() {
+// start carrousel
+    $('.carousel.carousel-slider').carousel({
+        fullWidth: true,
+        indicators: false
+    });
+
+
+// move next carousel
+    $('.moveNextCarousel').click(function (e) {
+        e.preventDefault();
+        e.stopPropagation();
+        $('.carousel').carousel('next');
+    });
+
+// move prev carousel
+    $('.movePrevCarousel').click(function (e) {
+        e.preventDefault();
+        e.stopPropagation();
+        $('.carousel').carousel('prev');
+    });
+}
