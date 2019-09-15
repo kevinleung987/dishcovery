@@ -160,7 +160,7 @@ setInterval(() => {
     } else if (state === "confirm") {
         title.innerText = "Confirm your photo!";
     } else if (state === "idle") {
-        title.innerText = "Take or add a photo!";
+        title.innerText = "Take or upload a photo!";
     }
 }, 50);
 
