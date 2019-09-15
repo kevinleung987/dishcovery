@@ -172,8 +172,8 @@ img {
 }
 
 .display-item {
-    background-repeat: no-repeat;
-    background-size: cover;
+  background-repeat: no-repeat;
+  background-size: cover;
 }
 
 .white {
@@ -193,5 +193,5 @@ img {
 }
 
 .carousel-fixed-item {
-    z-index: -1 !important;
+  z-index: -1 !important;
 }
