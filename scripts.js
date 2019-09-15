@@ -12,6 +12,7 @@ const takePhotoButton = document.getElementById("snap");
 const confirmButton = document.getElementById("confirm");
 const resetButton = document.getElementById("reset");
 const uploadButton = document.getElementById("upload");
+const carousel = document.getElementById("carousel");
 
 const key = "a9ba303f20ef47aebdb7a18bd3d9a747";
 const endpoint = "https://htn-2019.cognitiveservices.azure.com";
@@ -53,7 +54,7 @@ function searchImage(queryItem) {
             "Ocp-Apim-Subscription-Key": `${searchKey}`
         },
         method: "GET"
-    }
+    };
     const result = fetch(queryURL, params).then(async response => {
         const res = await response.json();
         if (!res["value"] || res["value"].length === 0) { return null; }
@@ -122,11 +123,46 @@ async function processImage(image, isFile) {
         foodDict['description'] = listOfFoodDesc[index];
         resultURL.push(foodDict);
     }
+    displayPicture(resultURL);
+    setUpCarousel();
     console.log(resultURL);
     return items;
 }
 
 document.addEventListener("DOMContentLoaded", async function() {});
+
+let active = false;
+
+function displayPicture(res) {
+
+    res.forEach((item) => {
+        if (item.contentURL) {
+
+
+            const div = document.createElement("div");
+            div.style.backgroundImage = "url(" + item.contentURL + ")";
+            // div.id = item.name;
+            div.className = "carousel-item display-item";
+            if (!active) {
+                // carousel.removeChild(carousel.childNodes[2]);
+                div.className += " active";
+                active = true;
+            }
+
+            const p = document.createElement("p");
+            p.className = "black-text white";
+
+            const name = document.createElement("b");
+            name.innerText = item.name;
+            p.appendChild(name);
+
+            div.appendChild(p);
+
+            carousel.appendChild(div);
+        }
+    });
+
+}
 
 // State Machine for rendering logic
 setInterval(() => {
@@ -141,11 +177,11 @@ setInterval(() => {
         state === "recording" ? "clear" : "undo";
     uploadButton.style.display = state === "idle" ? null : "none";
     if (state === "recording") {
-        title.innerText = "Please take a picture!";
+        title.innerText = "Take a photo or upload an image of a menu.";
     } else if (state === "confirm") {
-        title.innerText = "Confirm your photo!";
+        title.innerText = "Please confirm your photo.";
     } else if (state === "idle") {
-        title.innerText = "Take or upload a photo!";
+        title.innerText = "Take a photo or upload an image of a menu.";
     }
 }, 50);
 
@@ -181,3 +217,26 @@ confirmButton.addEventListener("click", function() {
     clearCanvas();
     state = "idle";
 });
+
+function setUpCarousel() {
+    // start carrousel
+    $('.carousel.carousel-slider').carousel({
+        fullWidth: true,
+        indicators: false
+    });
+
+
+    // move next carousel
+    $('.moveNextCarousel').click(function(e) {
+        e.preventDefault();
+        e.stopPropagation();
+        $('.carousel').carousel('next');
+    });
+
+    // move prev carousel
+    $('.movePrevCarousel').click(function(e) {
+        e.preventDefault();
+        e.stopPropagation();
+        $('.carousel').carousel('prev');
+    });
+}

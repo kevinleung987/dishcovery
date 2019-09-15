@@ -1,3 +1,5 @@
+html, body { height: 100%; width: 100%}
+
 .brand-logo {
     top: 7px;
 }
@@ -115,7 +117,6 @@ a.middle-indicator-text {
 .food-cap {
     margin-top: 250px;
     background-color: white;
-    /*color: black;*/
     margin-left: 70px;
     width: 30%;
     margin-left: 70%;
@@ -123,12 +124,16 @@ a.middle-indicator-text {
     /*opacity: 0.5;*/
 }
 
-header {
-    background: url(img/homepage.jpg);
-    background-size: cover;
-    background-position: center;
-    min-height: 900px;
+.launch {
+    background-color: #FDCF6C;
+    height: 100vh;
+    width: 100vw;
+}
 
+.center {
+    vertical-align: middle;
+    width: 100%;
+    margin-top: 60px;
 }
 
 @media screen and (max-width: 670px) {
@@ -148,4 +153,20 @@ header {
 
 .tabs .tab a:focus, .tabs .tab a:focus.active {
     background: transparent;
+}
+
+img {
+    max-width: 100%;
+    max-height: 100%;
+}
+
+.display-item {
+    background-repeat: no-repeat;
+    background-size: 100% 100%;
+}
+
+.white {
+    margin-top: 250px;
+    background-color: white;
+    width: 30%;
 }
