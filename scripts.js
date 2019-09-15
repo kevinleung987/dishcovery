@@ -164,6 +164,11 @@ function displayPicture(res) {
             const name = document.createElement("b");
             name.innerText = item.name;
             p.appendChild(name);
+            const volume_icon = document.createElement("i");
+            volume_icon.innerText = "volume_up"
+            volume_icon.className = "material-icons black-text";
+            volume_icon.onclick = () => textToSpeech(item.name);
+            p.appendChild(volume_icon);
             const div2 = document.createElement("div");
             div2.innerText = item.description;
             p.appendChild(div2);
@@ -175,6 +180,36 @@ function displayPicture(res) {
     });
     setUpCarousel();
 }
+
+function textToSpeech(text) {
+	// get all voices that browser offers
+	var available_voices = window.speechSynthesis.getVoices();
+
+	// this will hold an english voice
+	var english_voice = '';
+
+	// find voice by language locale "en-US"
+	// if not then select the first voice
+	for(var i=0; i<available_voices.length; i++) {
+		if(available_voices[i].lang === 'en-US') {
+			english_voice = available_voices[i];
+			break;
+		}
+	}
+	if(english_voice === '')
+		english_voice = available_voices[0];
+
+	// new SpeechSynthesisUtterance object
+	var utter = new SpeechSynthesisUtterance();
+	utter.rate = 1;
+	utter.pitch = 1;
+	utter.text = text;
+	utter.voice = english_voice;
+
+	// speak
+	window.speechSynthesis.speak(utter);
+}
+
 
 // State Machine for rendering logic
 setInterval(() => {

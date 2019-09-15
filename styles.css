@@ -92,6 +92,7 @@ input[type="file"] {
   direction: ltr;
   -moz-font-feature-settings: "liga";
   -moz-osx-font-smoothing: grayscale;
+  z-index: 999 !important;
 }
 
 .middle-indicator {
@@ -183,14 +184,14 @@ img {
   padding: 15px;
 }
 
-.sound {
-    margin-top: 60vh;
-}
-
 .hide {
   display: None;
 }
 
 .show {
   display: block;
+}
+
+.carousel-fixed-item {
+    z-index: -1 !important;
 }
