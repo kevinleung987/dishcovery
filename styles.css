@@ -1,172 +1,179 @@
-html, body { height: 100%; width: 100%}
+html,
+body {
+  height: 100%;
+  width: 100%;
+}
 
 .brand-logo {
-    top: 7px;
+  top: 7px;
 }
 
 .logo-image {
-    width: 125px;
-    height: inherit;
+  width: 125px;
+  height: inherit;
 }
 
 body {
-    display: flex;
-    min-height: 100vh;
-    flex-direction: column;
+  display: flex;
+  min-height: 100vh;
+  flex-direction: column;
 }
 
 main {
-    flex: 1 0 auto;
+  flex: 1 0 auto;
 }
 
 footer {
-    padding-top: 0px !important;
+  padding-top: 0px !important;
 }
 
 .take-photo {
-    size: 480px !important;
+  size: 480px !important;
 }
 
 video {
-    border: 2px solid red;
+  border: 2px solid red;
 }
 
 canvas {
-    border: 1px dashed black;
+  border: 1px dashed black;
 }
 
 .btn-large {
-    height: 112px !important;
-    width: 112px !important;
-    margin-left: 1rem;
-    margin-right: 1rem;
+  height: 112px !important;
+  width: 112px !important;
+  margin-left: 1rem;
+  margin-right: 1rem;
 }
 
 .btn-floating.btn-large i {
-    line-height: 112px !important;
+  line-height: 112px !important;
 }
 
 .btn-large i {
-    font-size: 3.2rem !important;
+  font-size: 3.2rem !important;
 }
 
 #canvas-container {
-    width: 100%;
-    text-align: center;
+  width: 100%;
+  text-align: center;
 }
 
 canvas,
 video {
-    display: inline;
+  display: inline;
 }
 
 input[type="file"] {
-    display: none;
+  display: none;
 }
 
 /* just for jsfiddle */
 @font-face {
-    font-family: 'Material Icons';
-    font-style: normal;
-    font-weight: 400;
-    src: local('Material Icons'), local('MaterialIcons-Regular'), url(https://fonts.gstatic.com/s/materialicons/v18/2fcrYFNaTjcS6g4U3t-Y5ZjZjT5FdEJ140U2DJYC3mY.woff2) format('woff2');
+  font-family: "Material Icons";
+  font-style: normal;
+  font-weight: 400;
+  src: local("Material Icons"), local("MaterialIcons-Regular"),
+    url(https://fonts.gstatic.com/s/materialicons/v18/2fcrYFNaTjcS6g4U3t-Y5ZjZjT5FdEJ140U2DJYC3mY.woff2)
+      format("woff2");
 }
 
 .material-icons {
-    font-family: 'Material Icons';
-    font-weight: normal;
-    font-style: normal;
-    font-size: 24px;
-    line-height: 1;
-    letter-spacing: normal;
-    text-transform: none;
-    display: inline-block;
-    white-space: nowrap;
-    word-wrap: normal;
-    direction: ltr;
-    -moz-font-feature-settings: 'liga';
-    -moz-osx-font-smoothing: grayscale;
+  font-family: "Material Icons";
+  font-weight: normal;
+  font-style: normal;
+  font-size: 24px;
+  line-height: 1;
+  letter-spacing: normal;
+  text-transform: none;
+  display: inline-block;
+  white-space: nowrap;
+  word-wrap: normal;
+  direction: ltr;
+  -moz-font-feature-settings: "liga";
+  -moz-osx-font-smoothing: grayscale;
 }
 
 .middle-indicator {
-    position: absolute;
-    top: 50%;
+  position: absolute;
+  top: 50%;
 }
 
 .middle-indicator-text {
-    font-size: 4.2rem;
+  font-size: 4.2rem;
 }
 
 a.middle-indicator-text {
-    color: white !important;
+  color: white !important;
 }
 
 .content-indicator {
-    width: 64px;
-    height: 64px;
-    background: none;
-    -moz-border-radius: 50px;
-    -webkit-border-radius: 50px;
-    border-radius: 50px;
+  width: 64px;
+  height: 64px;
+  background: none;
+  -moz-border-radius: 50px;
+  -webkit-border-radius: 50px;
+  border-radius: 50px;
 }
 
 .indicators {
-    visibility: hidden;
+  visibility: hidden;
 }
 
 .food-cap {
-    margin-top: 250px;
-    background-color: white;
-    margin-left: 70px;
-    width: 30%;
-    margin-left: 70%;
+  margin-top: 250px;
+  background-color: white;
+  margin-left: 70px;
+  width: 30%;
+  margin-left: 70%;
 
-    /*opacity: 0.5;*/
+  /*opacity: 0.5;*/
 }
 
 .launch {
-    background-color: #FDCF6C;
-    height: 100vh;
-    width: 100vw;
+  background-color: #fdcf6c;
+  height: 100vh;
+  width: 100vw;
 }
 
 .center {
-    vertical-align: middle;
-    width: 100%;
-    margin-top: 60px;
+  vertical-align: middle;
+  width: 100%;
+  margin-top: 60px;
 }
 
 @media screen and (max-width: 670px) {
-    header {
-        min-height: 500px;
-    }
+  header {
+    min-height: 500px;
+  }
 }
 
 .section {
-    padding-top: 4vw;
-    padding-bottom: 4vw;
+  padding-top: 4vw;
+  padding-bottom: 4vw;
 }
 
 .tabs .indicator {
-    background-color: #1a237e;
+  background-color: #1a237e;
 }
 
-.tabs .tab a:focus, .tabs .tab a:focus.active {
-    background: transparent;
+.tabs .tab a:focus,
+.tabs .tab a:focus.active {
+  background: transparent;
 }
 
 img {
-    max-width: 100%;
-    max-height: 100%;
+  max-width: 100%;
+  max-height: 100%;
 }
 
 .display-item {
-    background-repeat: no-repeat;
-    background-size: 100% 100%;
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
 }
 
 .white {
-    margin-top: 250px;
-    background-color: white;
-    width: 30%;
+  margin-top: 250px;
+  background-color: white;
+  width: 30%;
 }

@@ -1,92 +1,113 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
     <!-- font awesome -->
-    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.13/css/all.css"
-          integrity="sha384-DNOHZ68U8hZfKXOrtjWvjxusGo9WQnrNx2sqG0tfsghAvtVlRW3tvkXWZh58N9jp" crossorigin="anonymous">
+    <link
+      rel="stylesheet"
+      href="https://use.fontawesome.com/releases/v5.0.13/css/all.css"
+      integrity="sha384-DNOHZ68U8hZfKXOrtjWvjxusGo9WQnrNx2sqG0tfsghAvtVlRW3tvkXWZh58N9jp"
+      crossorigin="anonymous"
+    />
     <!--Import Google Icon Font-->
-    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link
+      href="https://fonts.googleapis.com/icon?family=Material+Icons"
+      rel="stylesheet"
+    />
     <!-- Compiled and minified CSS -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-beta/css/materialize.min.css">
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-beta/css/materialize.min.css"
+    />
 
     <title>dishcovery</title>
-    <link rel="stylesheet" href="styles.css"/>
-
-</head>
-<body>
-
-<!-- Main Body -->
-<main>
-    <div>
-      <a href="#start">
-        <div class="launch">
-          <img src="img/homepage.jpg" class="center">
-        </div>
-      </a>
-    </div>
-    <div class="container section scrollspy" id="start">
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <!-- Main Body -->
+    <main>
+      <div>
+        <a href="#start">
+          <div class="launch">
+            <img src="img/homepage.jpg" class="center" />
+          </div>
+        </a>
+      </div>
+      <div class="container section scrollspy" id="start">
         <div class="row">
-            <h4 class="center-align" id="title-text">Take a photo or upload an image of a menu.</h4>
-        </div>
-        <div class="row">
-            <div id="canvas-container">
-                <video id="video" width="320" height="240" autoplay></video>
-                <canvas id="canvas" width="320" height="240"></canvas>
-            </div>
+          <h4 class="center-align" id="title-text">
+            Take a photo or upload an image of a menu.
+          </h4>
         </div>
         <div class="row">
-            <p class="center-align">
-                <a
-                        class="btn-floating btn-large waves-effect waves-light blue take-photo"
-                        id="snap"
-                ><i class="material-icons">add_a_photo</i></a
-                >
-                <a
-                        class="btn-floating btn-large waves-effect waves-light green take-photo"
-                        id="confirm"
-                ><i class="material-icons">check</i></a
-                >
-                <a
-                        class="btn-floating btn-large waves-effect waves-light red take-photo"
-                        id="reset"
-                ><i class="material-icons">undo</i></a
-                >
-                <label for="file-upload" class="custom-file-upload">
-                    <a
-                            class="btn-floating btn-large waves-effect waves-light green take-photo"
-                            id="upload"
-                    ><i class="material-icons">cloud_upload</i></a
-                    >
-                </label>
-                <input
-                        id="file-upload"
-                        type="file"
-                        onchange="handleFiles(this.files)"
-                />
-            </p>
+          <div id="canvas-container">
+            <video id="video" width="320" height="240" autoplay></video>
+            <canvas id="canvas" width="320" height="240"></canvas>
+          </div>
         </div>
-    </div>
-</main>
+        <div class="row">
+          <p class="center-align">
+            <a
+              class="btn-floating btn-large waves-effect waves-light blue take-photo"
+              id="snap"
+              ><i class="material-icons">add_a_photo</i></a
+            >
+            <a
+              class="btn-floating btn-large waves-effect waves-light green take-photo"
+              id="confirm"
+              ><i class="material-icons">check</i></a
+            >
+            <a
+              class="btn-floating btn-large waves-effect waves-light red take-photo"
+              id="reset"
+              ><i class="material-icons">undo</i></a
+            >
+            <label for="file-upload" class="custom-file-upload">
+              <a
+                class="btn-floating btn-large waves-effect waves-light green take-photo"
+                id="upload"
+                ><i class="material-icons">cloud_upload</i></a
+              >
+            </label>
+            <input
+              id="file-upload"
+              type="file"
+              onchange="handleFiles(this.files)"
+            />
+          </p>
+        </div>
+      </div>
+    </main>
 
-
-<!--Menu Display-->
-<div class="container">
-    <div class="carousel carousel-slider center " id="carousel" data-indicators="true">
+    <!--Menu Display-->
+    <div class="container">
+      <div
+        class="carousel carousel-slider center "
+        id="carousel"
+        data-indicators="true"
+      >
         <div class="carousel-fixed-item center middle-indicator">
-            <div class="left">
-                <a href="Previo"
-                   class="movePrevCarousel middle-indicator-text waves-effect waves-light content-indicator"><i
-                        class="material-icons left  middle-indicator-text">chevron_left</i></a>
-            </div>
+          <div class="left">
+            <a
+              href="Previo"
+              class="movePrevCarousel middle-indicator-text waves-effect waves-light content-indicator"
+              ><i class="material-icons left  middle-indicator-text"
+                >chevron_left</i
+              ></a
+            >
+          </div>
 
-            <div class="right">
-                <a href="Siguiente"
-                   class=" moveNextCarousel middle-indicator-text waves-effect waves-light content-indicator"><i
-                        class="material-icons right middle-indicator-text">chevron_right</i></a>
-            </div>
+          <div class="right">
+            <a
+              href="Siguiente"
+              class=" moveNextCarousel middle-indicator-text waves-effect waves-light content-indicator"
+              ><i class="material-icons right middle-indicator-text"
+                >chevron_right</i
+              ></a
+            >
+          </div>
         </div>
 
         <!--<div class="carousel-item display-item"-->
@@ -94,15 +115,14 @@
         <!--<p class="black-text white">-->
         <!--<b> ha</b> This is your first panel</p>-->
         <!--</div>-->
+      </div>
     </div>
-</div>
-<br><br>
+    <br /><br />
 
-<!-- Compiled and minified JavaScript -->
-<script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-beta/js/materialize.min.js"></script>
-<script src="setup.js"></script>
-<script src="scripts.js"></script>
-
-</body>
+    <!-- Compiled and minified JavaScript -->
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-beta/js/materialize.min.js"></script>
+    <script src="setup.js"></script>
+    <script src="scripts.js"></script>
+  </body>
 </html>
