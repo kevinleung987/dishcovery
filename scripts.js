@@ -156,11 +156,11 @@ setInterval(() => {
         state === "recording" ? "clear" : "undo";
     uploadButton.style.display = state === "idle" ? null : "none";
     if (state === "recording") {
-        title.innerText = "Please take a picture!";
+        title.innerText = "Take a photo or upload an image of a menu.";
     } else if (state === "confirm") {
-        title.innerText = "Confirm your photo!";
+        title.innerText = "Please confirm your photo.";
     } else if (state === "idle") {
-        title.innerText = "Take or upload a photo!";
+        title.innerText = "Take a photo or upload an image of a menu.";
     }
 }, 50);
 

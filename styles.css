@@ -1,3 +1,5 @@
+html, body { height: 100%; width: 100%}
+
 .brand-logo {
     top: 7px;
 }
@@ -122,12 +124,16 @@ a.middle-indicator-text {
     /*opacity: 0.5;*/
 }
 
-header {
-    background: url(img/homepage.jpg);
-    background-size: cover;
-    background-position: center;
-    min-height: 900px;
+.launch {
+    background-color: #FDCF6C;
+    height: 100vh;
+    width: 100vw;
+}
 
+.center {
+    vertical-align: middle;
+    width: 100%;
+    margin-top: 60px;
 }
 
 @media screen and (max-width: 670px) {
