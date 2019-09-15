@@ -21,7 +21,8 @@ const url = `${endpoint}/vision/v2.0/ocr?language=en&detectOrientation=false`;
 const searchKey = "0cbaf33d08b84d8497428aca67d6b512";
 const searchEndpoint =
   "https://hackthenorth19-bingsearch.cognitiveservices.azure.com";
-const searchURL = `${searchEndpoint}/bing/v7.0/images`;
+const searchURL = `${searchEndpoint}/bing/v7.0`;
+const searchImageURL = `${searchEndpoint}/bing/v7.0/images`;
 
 clearCanvas();
 
@@ -48,7 +49,7 @@ function resizeImage(image, width, height) {
 }
 
 function searchImage(queryItem) {
-  const queryURL = `${searchURL}/search?q=${queryItem}&mkt=en-us`;
+  const queryURL = `${searchImageURL}/search?q=${queryItem}&mkt=en-us`;
   const params = {
     headers: {
       "Ocp-Apim-Subscription-Key": `${searchKey}`
@@ -60,7 +61,27 @@ function searchImage(queryItem) {
     if (!res["value"] || res["value"].length === 0) {
       return null;
     }
-    return res["value"][0]["contentUrl"];
+    const url = res["value"][0]["contentUrl"];
+    return url;
+  });
+  return result;
+}
+
+function searchWeb(queryItem) {
+  const queryURL = `${searchURL}/search?q=${queryItem}Description&textDecoration=true&textFormat=HTML`;
+  const params = {
+    headers: {
+      "Ocp-Apim-Subscription-Key": `${searchKey}`
+    },
+    method: "GET"
+  };
+  const result = fetch(queryURL, params).then(async response => {
+    const res = await response.json();
+    if (!res["webPages"]["value"] || res["webPages"]["value"].length === 0) {
+      return null;
+    }
+    const description = res["webPages"]["value"][0]["snippet"];
+    return description;
   });
   return result;
 }
@@ -77,6 +98,7 @@ async function processImage(image, isFile) {
   };
   const items = [];
   const urlPromisesList = [];
+  const descPromiseList = [];
   const result = await fetch(url, params).then(response => response.json());
   result.regions.forEach(region => {
     region.lines.forEach(line => {
@@ -91,21 +113,24 @@ async function processImage(image, isFile) {
     });
   });
   console.log(items);
-  items.forEach(item => urlPromisesList.push(searchImage(item)));
+  items.forEach(item => {
+    urlPromisesList.push(searchImage(item));
+    descPromiseList.push(searchWeb(item));
+  });
 
   const listOfFoodURL = await Promise.all(urlPromisesList);
+  const listOfFoodDesc = await Promise.all(descPromiseList);
 
-  const resultURL = [];
+  const foodResult = [];
   for (index = 0; index < listOfFoodURL.length; index++) {
     const foodDict = {};
     foodDict["name"] = items[index];
     foodDict["contentURL"] = listOfFoodURL[index];
-
-    resultURL.push(foodDict);
+    foodDict["description"] = listOfFoodDesc[index];
+    foodResult.push(foodDict);
   }
-  displayPicture(resultURL);
-  setUpCarousel();
-  console.log(resultURL);
+  displayPicture(foodResult);
+  console.log(foodResult);
   return items;
 }
 
@@ -121,7 +146,6 @@ function displayPicture(res) {
       // div.id = item.name;
       div.className = "carousel-item display-item";
       if (!active) {
-        // carousel.removeChild(carousel.childNodes[2]);
         div.className += " active";
         active = true;
       }
@@ -132,6 +156,9 @@ function displayPicture(res) {
       const name = document.createElement("b");
       name.innerText = item.name;
       p.appendChild(name);
+      const div2 = document.createElement("div");
+      div2.innerText = item.description;
+      p.appendChild(div2);
 
       div.appendChild(p);
 
@@ -214,4 +241,8 @@ function setUpCarousel() {
     e.stopPropagation();
     $(".carousel").carousel("prev");
   });
+}
+
+function showCarousel() {
+  setUpCarousel();
 }

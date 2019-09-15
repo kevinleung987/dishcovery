@@ -175,5 +175,14 @@ img {
 .white {
   margin-top: 250px;
   background-color: white;
-  width: 30%;
+  width: auto;
+  opacity: 0.73;
+}
+
+.hide {
+  display: None;
+}
+
+.show {
+  display: block;
 }
