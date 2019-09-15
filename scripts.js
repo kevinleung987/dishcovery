@@ -20,7 +20,7 @@ const url = `${endpoint}/vision/v2.0/ocr?language=en&detectOrientation=false`;
 
 const searchKey = "0cbaf33d08b84d8497428aca67d6b512";
 const searchEndpoint = "https://hackthenorth19-bingsearch.cognitiveservices.azure.com";
-const searchURL = `${searchEndpoint}/bing/v7.0/`;
+const searchURL = `${searchEndpoint}/bing/v7.0`;
 const searchImageURL = `${searchEndpoint}/bing/v7.0/images`;
 
 clearCanvas();
@@ -57,7 +57,9 @@ function searchImage(queryItem) {
     };
     const result = fetch(queryURL, params).then(async response => {
         const res = await response.json();
-        if (!res["value"] || res["value"].length === 0) { return null; }
+        if (!res["value"] || res["value"].length === 0) {
+            return null;
+        }
         const url = res["value"][0]["contentUrl"];
         return url;
     });
@@ -71,10 +73,12 @@ function searchWeb(queryItem) {
             "Ocp-Apim-Subscription-Key": `${searchKey}`
         },
         method: "GET"
-    }
+    };
     const result = fetch(queryURL, params).then(async response => {
         const res = await response.json();
-        if (!res["webPages"]["value"] || res["webPages"]["value"].length === 0) { return null; }
+        if (!res["webPages"]["value"] || res["webPages"]["value"].length === 0) {
+            return null;
+        }
         const description = res["webPages"]["value"][0]["snippet"];
         return description;
     });
@@ -115,21 +119,22 @@ async function processImage(image, isFile) {
     const listOfFoodURL = await Promise.all(urlPromisesList);
     const listOfFoodDesc = await Promise.all(descPromiseList);
 
-    const resultURL = [];
+    const foodResult = [];
     for (index = 0; index < listOfFoodURL.length; index++) {
         const foodDict = {};
         foodDict['name'] = items[index];
         foodDict['contentURL'] = listOfFoodURL[index];
         foodDict['description'] = listOfFoodDesc[index];
-        resultURL.push(foodDict);
+        foodResult.push(foodDict);
     }
-    displayPicture(resultURL);
+    displayPicture(foodResult);
     setUpCarousel();
-    console.log(resultURL);
+    console.log(foodResult);
     return items;
 }
 
-document.addEventListener("DOMContentLoaded", async function() {});
+document.addEventListener("DOMContentLoaded", async function () {
+});
 
 let active = false;
 
@@ -155,6 +160,9 @@ function displayPicture(res) {
             const name = document.createElement("b");
             name.innerText = item.name;
             p.appendChild(name);
+            const div2 = document.createElement("div");
+            div2.innerText = item.description;
+            p.appendChild(div2);
 
             div.appendChild(p);
 
@@ -186,7 +194,7 @@ setInterval(() => {
 }, 50);
 
 // Trigger photo take
-takePhotoButton.addEventListener("click", function() {
+takePhotoButton.addEventListener("click", function () {
     if (state === "recording") {
         context.drawImage(video, 0, 0, canvas.width, canvas.height);
         video.srcObject = null;
@@ -195,8 +203,8 @@ takePhotoButton.addEventListener("click", function() {
     } else {
         if (navigator.mediaDevices && navigator.mediaDevices.getUserMedia) {
             navigator.mediaDevices
-                .getUserMedia({ video: true })
-                .then(function(stream) {
+                .getUserMedia({video: true})
+                .then(function (stream) {
                     video.srcObject = stream;
                     video.play();
                 });
@@ -205,14 +213,14 @@ takePhotoButton.addEventListener("click", function() {
     }
 });
 
-resetButton.addEventListener("click", function() {
+resetButton.addEventListener("click", function () {
     video.srcObject = null;
     video.pause();
     clearCanvas();
     state = "idle";
 });
 
-confirmButton.addEventListener("click", function() {
+confirmButton.addEventListener("click", function () {
     canvas.toBlob(blob => processImage(blob, false));
     clearCanvas();
     state = "idle";
@@ -227,14 +235,14 @@ function setUpCarousel() {
 
 
     // move next carousel
-    $('.moveNextCarousel').click(function(e) {
+    $('.moveNextCarousel').click(function (e) {
         e.preventDefault();
         e.stopPropagation();
         $('.carousel').carousel('next');
     });
 
     // move prev carousel
-    $('.movePrevCarousel').click(function(e) {
+    $('.movePrevCarousel').click(function (e) {
         e.preventDefault();
         e.stopPropagation();
         $('.carousel').carousel('prev');

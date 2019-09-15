@@ -1,4 +1,7 @@
-html, body { height: 100%; width: 100%}
+html, body {
+    height: 100%;
+    width: 100%
+}
 
 .brand-logo {
     top: 7px;
@@ -168,5 +171,6 @@ img {
 .white {
     margin-top: 250px;
     background-color: white;
-    width: 30%;
+    width: auto;
+    opacity: 0.73;
 }
