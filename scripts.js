@@ -14,11 +14,11 @@ const resetButton = document.getElementById("reset");
 const uploadButton = document.getElementById("upload");
 const carousel = document.getElementById("carousel");
 
-const key = "a9ba303f20ef47aebdb7a18bd3d9a747";
+const key = "Kevin-key";
 const endpoint = "https://htn-2019.cognitiveservices.azure.com";
 const url = `${endpoint}/vision/v2.0/ocr?language=en&detectOrientation=false`;
 
-const searchKey = "0c5450a28c93458da4dad10bdd7ad566";
+const searchKey = "Jerry-key";
 const searchEndpoint =
     "https://hackthenorth19-bingsearch.cognitiveservices.azure.com";
 const searchURL = `${searchEndpoint}/bing/v7.0`;
