@@ -171,8 +171,8 @@ img {
 }
 
 .display-item {
-    background-repeat: no-repeat;
-    background-size: cover;
+  background-repeat: no-repeat;
+  background-size: cover;
 }
 
 .white {
@@ -181,10 +181,6 @@ img {
   width: auto;
   opacity: 0.73;
   padding: 15px;
-}
-
-.sound {
-    margin-top: 60vh;
 }
 
 .hide {
